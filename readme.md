@@ -3,6 +3,8 @@
 ## Introduction
 
 S3SS is a deployment helper. It allows synchronization to the cloud of a directory of static files to be used as a website behind a CDN.
+If the S3 bucket does not exist for the account with the given S3 credentials, then it tries to create it (will fail on creating duplicate
+bucket name). It will also set it up for CORS uploads.
 
 It contains the following:
 
@@ -19,10 +21,22 @@ Command line options:
 * -b, -bucket -- The S3 bucket to use. Overrides config file bucket value if provided
 * -c, -config -- Relative (or absolute) config file path to override/extend defaults from __dirname
 
-Example config file (.js):
+Example (default) config.js file for angular website:
 ```JavaScript
     localDir: '../../_public',
-    deleteRemoved: true, // default false
+    deleteRemoved: true,
+	ensureBucketWebsite: true,
+	bucketWebsite:       {
+		IndexDocument: {Suffix: 'index.html'},
+		ErrorDocument: {Key: 'index.html'},
+		RoutingRules:  [{
+			Condition: {HttpErrorCodeReturnedEquals: '404'},
+			Redirect:  {
+				HostName:             'my.domain.com',
+				ReplaceKeyPrefixWith: '#!/'
+			}
+		}]
+	},
     s3Options: {
         ALC:                'public-read',
         Bucket:             'mybucket',
