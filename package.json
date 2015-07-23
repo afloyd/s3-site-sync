@@ -1,0 +1,40 @@
+{
+  "name": "questis-site-sync",
+  "description": "Questis Site syncronization with cloud storage / deployment",
+  "version": "0.0.1",
+  "author": "Questis Dev Team",
+  "contributors": [
+    {
+      "name": "Austin Floyd",
+      "email": "austin.floyd@myquestis.com"
+    },
+    {
+      "name": "Luke Ulrich",
+      "email": "luke.ulrich@myquestis.com"
+    },
+    {
+      "name": "Curtis Blanton",
+      "email": "curt.blanton@myquestis.com"
+    }
+
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:Questis/questis-site-sync.git"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "2.4.x"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/Questis/questis-site-sync/issues",
+    "email": "questisdev@myquestis.com"
+  },
+  "dependencies": {
+    "s3": "4.4.0",
+    "shortid": "2.1.x",
+    "lodash": "3.10.x",
+    "bluebird": "2.9.x"
+  },
+  "devDependencies": {}
+}
