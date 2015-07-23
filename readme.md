@@ -1,8 +1,8 @@
-# Questis Site Sync
+# S3 Site Sync
 
 ## Introduction
 
-QSS is a deployment helper. It allows synchronization to the cloud of a directory of static files to be used as a website behind a CDN.
+S3SS is a deployment helper. It allows synchronization to the cloud of a directory of static files to be used as a website behind a CDN.
 
 It contains the following:
 
