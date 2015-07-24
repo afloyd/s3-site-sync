@@ -1,12 +1,13 @@
-# S3 Site Sync
+# S3 Site Sync (and creation)
 
 ## Introduction
 
-S3SS is a deployment helper. It allows synchronization to the cloud of a directory of static files to be used as a website behind a CDN.
-If the S3 bucket does not exist for the account with the given S3 credentials, then it tries to create it (will fail on creating duplicate
-bucket name). It will also set it up for CORS uploads.
-
-It contains the following:
+S3SS is a deployment helper. It allows synchronization to the cloud of a local directory of static files to be used as a website behind a
+Cloudfront distribution (CDN). If the S3 bucket does not exist for the account with the given S3 credentials, then it tries to create it
+(will fail on creating duplicate bucket name). It will also set it up for CORS uploads. When creating the bucket it enables it to work as
+ an S3 website. If the bucket already exists, then it ensures that it is set up to work as an S3 website. It will search for a cloudfront
+  distribution that already exists for the given bucket (based on distribution origins), if it does not find one then it will set one up
+  to work with the given/created S3 bucket. Make sure to read the `NOTES` section at the bottom...
 
 ## Setup
 
