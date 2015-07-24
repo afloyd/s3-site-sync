@@ -2,12 +2,7 @@
 
 ## Introduction
 
-S3SS is a deployment helper. It allows synchronization to the cloud of a local directory of static files to be used as a website behind a
-Cloudfront distribution (CDN). If the S3 bucket does not exist for the account with the given S3 credentials, then it tries to create it
-(will fail on creating duplicate bucket name). It will also set it up for CORS uploads. When creating the bucket it enables it to work as
- an S3 website. If the bucket already exists, then it ensures that it is set up to work as an S3 website. It will search for a cloudfront
-  distribution that already exists for the given bucket (based on distribution origins), if it does not find one then it will set one up
-  to work with the given/created S3 bucket. Make sure to read the `NOTES` section at the bottom...
+S3SS is a deployment helper. It allows synchronization to the cloud of a local directory of static files to be used as a website behind a Cloudfront distribution (CDN). If the S3 bucket does not exist for the account with the given S3 credentials, then it tries to create it (will fail on creating duplicate bucket name). It will also set it up for CORS uploads. When creating the bucket it enables it to work as an S3 website. If the bucket already exists, then it ensures that it is set up to work as an S3 website. It will search for a cloudfront distribution that already exists for the given bucket (based on distribution origins), if it does not find one then it will set one up to work with the given/created S3 bucket. Make sure to read the [Notes](#NOTES) section at the bottom...
 
 ## Setup
 
@@ -16,12 +11,24 @@ Cloudfront distribution (CDN). If the S3 bucket does not exist for the account w
 3. Execute the command `npm install` to install all package dependencies.
 4. Run `node ./` to begin synchronization.
 
-## Options
+## CLI Options
 
 Command line options:
 * -b, -bucket -- The S3 bucket to use. Overrides config file bucket value if provided
-* -c, -config -- Relative (or absolute) config file path to override/extend defaults from __dirname
+* -c, -config -- Relative (or absolute) config file path to override/extend defaults from __dirname. See (config)[#config] below
 
+## Notes
+
+* The sync functionality looks for an existing cloudfront distribution  with an origin domain (`config.cloudfrontDistribution
+.DistributionConfig.Origins.Items.X.DomainName` to equal the bucket website URL - ie `mybucket.s3-website-us-east-1.amazonaws.com`). If
+one exists then it will use the existing distribution without modification to any settings. If it does not exist, then it will be created
+ and configured to work with an angular type application. ?
+* If you want to point you website at the cloudfront distribution, make sure to set the `Aliases` in your config accordingly. NOTE: Any
+aliases specified cannot exist in another distribution or it will throw an error back from AWS.
+* If you wish to use SSL, make sure to set the `ViewerCertificate` in your config accordingly
+* This "should" work with any AWS region, but only tested with 'us-east-1'
+
+## Config
 Example (default) config.js file for angular website:
 ```JavaScript
     localDir: '../../_public',
@@ -209,14 +216,3 @@ Example (default) config.js file for angular website:
 		}
 	}
 ```
-
-## Notes
-
-* The sync functionality looks for an existing cloudfront distribution  with an origin domain (`config.cloudfrontDistribution
-.DistributionConfig.Origins.Items.X.DomainName` to equal the bucket website URL - ie `mybucket.s3-website-us-east-1.amazonaws.com`). If
-one exists then it will use the existing distribution without modification to any settings. If it does not exist, then it will be created
- and configured to work with an angular type application. ?
-* If you want to point you website at the cloudfront distribution, make sure to set the `Aliases` in your config accordingly. NOTE: Any
-aliases specified cannot exist in another distribution or it will throw an error back from AWS.
-* If you wish to use SSL, make sure to set the `ViewerCertificate` in your config accordingly
-* This "should" work with any AWS region, but only tested with 'us-east-1'
