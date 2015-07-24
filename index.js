@@ -1,11 +1,12 @@
-var args = getArgs(),
-	config = require('./config'),
-	path = require('path'),
-	_ = require('lodash');
+var args   = getArgs(),
+    config = require('./config'),
+    path   = require('path'),
+    _      = require('lodash');
 
 var helpArgs = {
 	'-c, -config': 'Relative (or absolute) config file path to override/extend defaults from __dirname',
-	'-b, -bucket': 'The S3 bucket to use. Overrides config file bucket value if provided'
+	'-b, -bucket': 'The S3 bucket to use. Overrides config file bucket value if provided',
+	'-ld, -localDir': 'The local folder to sync. Overrides config file value'
 };
 
 if (args.h) {
@@ -21,7 +22,7 @@ if (args.h) {
 if (args.c || args.config) {
 	try {
 		var mergeConf = require(args.c || args.config);
-	} catch(ex) {
+	} catch (ex) {
 		console.error('Invalid config file or location!');
 		process.exit(1);
 	}
@@ -31,18 +32,21 @@ if (args.c || args.config) {
 
 if (args.b || args.bucket) {
 	config.s3Options = config.s3Options || {};
-	config.s3Options.bucket = args.b || args.bucket;
+	config.s3Options.Bucket = args.b || args.bucket;
 }
+
+var commandLineLocalDir = args.ld || args.localDir;
+config.localDir = commandLineLocalDir ? commandLineLocalDir : config.localDir;
 
 var Sync = require('./lib/sync');
 new Sync(config);
 
 function getArgs() {
-	var args = {},
+	var args     = {},
 	    argsList = process.argv.slice(2);
-	for (var i=0; i < argsList.length; i++) {
+	for (var i = 0; i < argsList.length; i++) {
 		var hasProp = false,
-		    arg = argsList[i].toLowerCase();
+		    arg     = argsList[i].toLowerCase();
 		if (arg.substring(0, 1) === '-') {
 			hasProp = true;
 			arg = arg.substring(1);
