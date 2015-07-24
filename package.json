@@ -1,12 +1,12 @@
 {
   "name": "s3-site-sync",
-  "description": "Questis Site syncronization with cloud storage / deployment",
-  "version": "1.0.0",
+  "description": "S3 Site Syncronization/create with cloud storage / deployment",
+  "version": "1.0.1",
   "author": "Questis Dev Team",
   "contributors": [
     {
       "name": "Austin Floyd",
-      "email": "austin.floyd@myquestis.com"
+      "email": "austin.floyd@myquestis.com, texsc98@gmail.com"
     },
     {
       "name": "Luke Ulrich",
@@ -19,15 +19,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:Questis/questis-site-sync.git"
+    "url": "git@github.com:afloyd/s3-site-sync.git"
   },
   "engines": {
     "node": "0.10.x",
     "npm": "2.4.x"
   },
   "bugs": {
-    "url": "https://bitbucket.org/Questis/questis-site-sync/issues",
-    "email": "questisdev@myquestis.com"
+    "url": "https://github.com/afloyd/s3-site-sync/issues",
+    "email": "texsc98@gmail.com"
   },
   "dependencies": {
     "s3": "4.4.0",
