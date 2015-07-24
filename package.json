@@ -1,7 +1,7 @@
 {
   "name": "s3-site-sync",
   "description": "Questis Site syncronization with cloud storage / deployment",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Questis Dev Team",
   "contributors": [
     {

@@ -4,6 +4,8 @@
 
 S3SS is a deployment helper. It allows synchronization to the cloud of a local directory of static files to be used as a website behind a Cloudfront distribution (CDN). If the S3 bucket does not exist for the account with the given S3 credentials, then it tries to create it (will fail on creating duplicate bucket name). It will also set it up for CORS uploads. When creating the bucket it enables it to work as an S3 website. If the bucket already exists, then it ensures that it is set up to work as an S3 website. It will search for a cloudfront distribution that already exists for the given bucket (based on distribution origins), if it does not find one then it will set one up to work with the given/created S3 bucket. Make sure to read the [Notes](#notes) section at the bottom...
 
+Can be used as a CLI tool or node module. When used from CLI you must specify the `-r` parameter.
+
 ## Setup
 
 1. Install [Node.js](http://nodejs.org/). Consider using [NVM](https://github.com/creationix/nvm) to do this.
@@ -11,11 +13,25 @@ S3SS is a deployment helper. It allows synchronization to the cloud of a local d
 3. Execute the command `npm install` to install all package dependencies.
 4. Run `node ./` to begin synchronization.
 
-## CLI Options
+## As a CLI Tool:
 
 Command line options:
-* -b, -bucket -- The S3 bucket to use. Overrides config file bucket value if provided
-* -c, -config -- Relative (or absolute) config file path to override/extend defaults from __dirname. See [config](#config) below
+* -r, -run       	       -- Run from the command line. Must be present to other CLI options to function. No (value) required
+* -c, -config    (value) -- Relative (or absolute) config file path to override/extend defaults from `__dirname`. See [config](#config) below
+* -b, -bucket    (value) -- The S3 bucket to use. Overrides config file bucket value if provided
+* -ld, -localDir (value) -- The local folder to sync. Overrides config file value
+
+1. `npm install s3-site-sync` // Make sure the module is installed via NPM
+2. `node s3-site-sync -r -c ./my-config.js` // Run S3SS with the config file in the current directory called `my-config.js`
+
+## As a Node module:
+
+1. `var s3ss = require('s3-site-sync');`
+2. `var sync = new s3ss.Sync(require('my-config');` // Where `my-config` points to your site sync configuration file
+3. `sync.then(function(result) {console.log('results:', results);})` // `Sync` returns a promise containing operation results:
+	* `results.bucket` // The S3 bucket information
+	* `results.bucketWebsite` // The S3 bucket website configuration (if enabled)
+	* `results.cloudfrontDistribution` // The cloudfront distribution configuration (if enabled)
 
 ## Notes
 
@@ -28,7 +44,7 @@ aliases specified cannot exist in another distribution or it will throw an error
 * If you wish to use SSL, make sure to set the `ViewerCertificate` in your config accordingly
 * This "should" work with any AWS region, but only tested with 'us-east-1'
 
-## Config
+## Configuration
 Example (default) config.js file for angular website:
 ```JavaScript
     localDir: '../../_public',
