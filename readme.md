@@ -15,7 +15,7 @@ S3SS is a deployment helper. It allows synchronization to the cloud of a local d
 
 Command line options:
 * -b, -bucket -- The S3 bucket to use. Overrides config file bucket value if provided
-* -c, -config -- Relative (or absolute) config file path to override/extend defaults from __dirname. See (config)[#config] below
+* -c, -config -- Relative (or absolute) config file path to override/extend defaults from __dirname. See [config](#config) below
 
 ## Notes
 
