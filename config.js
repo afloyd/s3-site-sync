@@ -16,7 +16,7 @@ var config = {
 	},
 	s3Options:              {
 		ALC:             'public-read',
-		Bucket:          'mybucket-austin',
+		Bucket:          'mybucket',
 		accessKeyId:     'myaccessKeyId',
 		secretAccessKey: 'mySecretAccessKey',
 		region:          'us-east-1',

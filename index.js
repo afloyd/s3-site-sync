@@ -1,6 +1,6 @@
 var Sync = require('./lib/sync'),
     args   = getArgs(),
-    config = require('./config'),
+    config = {},
     path   = require('path'),
     _      = require('lodash');
 
