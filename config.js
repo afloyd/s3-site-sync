@@ -23,7 +23,6 @@ var config = {
 		Prefix:          ''
 	},
 	ensureDistribution:     true,
-	ensureFoo: true,
 	cloudfrontDistribution: {
 		DistributionConfig: {
 			Comment:              'Created by s3-site-sync', /* required -- can override with empty string/etc if desired */
@@ -184,7 +183,8 @@ var config = {
 				// SSLSupportMethod:             'sni-only' // (sni-only | vip) -- VIP cost $$!!
 			}
 		}
-	}
+	},
+	ensureDistributionDefaultRootObj: false
 };
 
 module.exports = config;
