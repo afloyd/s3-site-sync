@@ -1,7 +1,7 @@
 {
   "name": "s3-site-sync",
   "description": "S3 Site Syncronization/create with cloud storage / deployment",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Questis Dev Team",
   "contributors": [
     {
@@ -30,7 +30,7 @@
     "email": "texsc98@gmail.com"
   },
   "dependencies": {
-    "s3": "git@github.com:afloyd/node-s3-client.git",
+    "s3": "git://github.com/afloyd/node-s3-client.git",
     "shortid": "2.1.x",
     "lodash": "3.10.x",
     "bluebird": "2.9.x"
