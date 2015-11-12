@@ -32,6 +32,7 @@ Command line options:
 	* `results.bucket` // The S3 bucket information
 	* `results.bucketWebsite` // The S3 bucket website configuration (if enabled)
 	* `results.cloudfrontDistribution` // The cloudfront distribution configuration (if enabled)
+	* `results.uploadedFiles` // The files uploaded to cloudfront. NOTE: Experimental, may not necessarily contain all files uploaded
 
 ## Notes
 
@@ -43,6 +44,7 @@ one exists then it will use the existing distribution without modification to an
 aliases specified cannot exist in another distribution or it will throw an error back from AWS.
 * If you wish to use SSL, make sure to set the `ViewerCertificate` in your config accordingly
 * This "should" work with any AWS region, but only tested with 'us-east-1'
+* Check out the commented note below on `s3Options.Prefix` in the configuration!
 
 ## Configuration
 Example (default) config.js file for angular website:
@@ -67,6 +69,8 @@ Example (default) config.js file for angular website:
         accessKeyId:        'myAccessKey',
         secretAccessKey:    'mySecretAccessKey',
         region:             'us-east-1',
+        // Will upload files to the given prefix within the S3 bucket. Will also configure the cloudfront distribution "OriginPath" to this
+        // value. Enables creating a "fresh" set of website files for each deployment within a single bucket!
         Prefix:             ''
     },
     ensureDistribution: true,
