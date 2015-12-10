@@ -10,12 +10,14 @@ var config = {
 			Condition: {HttpErrorCodeReturnedEquals: '404'},
 			Redirect:  {
 				HostName:             null, // will be filled in pragmatically, or you can override with your config.js
-				ReplaceKeyPrefixWith: '#!/'
+				ReplaceKeyPrefixWith: '#!/', // Useful for AngularJS single page apps
+				HttpRedirectCode: '307', // Keeps Cloudfront from caching redirect responses, so if a file is missing you can re-upload
+				Protocol: 'https'
 			}
 		}]
 	},
 	s3Options:              {
-		ALC:             'public-read',
+		ACL:             'public-read',
 		Bucket:          'mybucket',
 		accessKeyId:     'myaccessKeyId',
 		secretAccessKey: 'mySecretAccessKey',
