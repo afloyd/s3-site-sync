@@ -1,7 +1,7 @@
 {
   "name": "s3-site-sync",
   "description": "S3 Site Syncronization/create with cloud storage / deployment",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "author": "Questis Dev Team",
   "contributors": [
     {
@@ -22,18 +22,20 @@
     "url": "git@github.com:afloyd/s3-site-sync.git"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "2.4.x"
+    "node": "4.2.2",
+    "npm": "^2.4.x"
   },
   "bugs": {
     "url": "https://github.com/afloyd/s3-site-sync/issues",
     "email": "texsc98@gmail.com"
   },
   "dependencies": {
-    "s3": "git://github.com/afloyd/node-s3-client.git",
-    "shortid": "2.1.x",
+    "aws-sdk": "2.2.x",
+    "bluebird": "2.9.x",
+    "file-magik": "^0.5.0",
     "lodash": "3.10.x",
-    "bluebird": "2.9.x"
+    "mime": "^1.3.4",
+    "shortid": "2.1.x"
   },
   "devDependencies": {}
 }

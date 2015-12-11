@@ -22,7 +22,8 @@ var config = {
 		accessKeyId:     'myaccessKeyId',
 		secretAccessKey: 'mySecretAccessKey',
 		region:          'us-east-1',
-		Prefix:          ''
+		Prefix:          '',
+		concurrency:     8
 	},
 	ensureDistribution:     true,
 	cloudfrontDistribution: {
