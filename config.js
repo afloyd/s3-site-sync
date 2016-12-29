@@ -3,6 +3,7 @@ var config = {
 	deleteRemoved:          true,
 	enableBucketCORS:       true,
 	ensureBucketWebsite:    true,
+	noBucketWebsiteRoutingRules: true,
 	bucketWebsite:          {
 		IndexDocument: {Suffix: 'index.html'},
 		ErrorDocument: {Key: 'index.html'},
