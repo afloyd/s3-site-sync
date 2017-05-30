@@ -1,7 +1,7 @@
 {
   "name": "s3-site-sync",
   "description": "S3 Site Syncronization/create with cloud storage / deployment",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "author": "Questis Dev Team",
   "contributors": [
     {
@@ -20,10 +20,6 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:afloyd/s3-site-sync.git"
-  },
-  "engines": {
-    "node": "6.2.2",
-    "npm": "^2.4.x"
   },
   "bugs": {
     "url": "https://github.com/afloyd/s3-site-sync/issues",
